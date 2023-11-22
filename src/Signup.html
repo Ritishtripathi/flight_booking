@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <style>
+         body{
+            background-image:url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        #container{
+           height:90vh;
+           width:50vw;
+           border:1px solid white;
+           margin-left:23vw;
+           margin-top:5vh;
+           background:white;
+           border-radius:5px ;
+        }
+        h3{
+            text-align: center;
+            font-size:30px;
+            text-decoration:underline;
+        }
+        form{
+        padding-left: 10vw;
+        }
+        input{
+            height:5vh;
+            width:30vw;
+            border-radius:5px;
+            border:none;
+            background:rgb(225, 223, 223);
+            margin-right: 10vw;
+            margin-top:1vh;
+            margin-bottom:1vh;
+        }
+        button{
+            height:5vh;
+            width:30vw;
+            border-radius:5px;
+            border:none;
+            background:rgb(163, 162, 162);
+            margin-top:1vh;
+        }
+        a{
+            text-decoration:none;
+            color:white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+       <h3>SignUp Here</h3>
+        <form action="/signup" method="post">
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+            <label for="dob">DOB :</label>
+            <input type="" id="dob" name="dob" required>
+            <label for="number">Contact :</label>
+            <input type="text" id="number" name="number" required>
+            <label for="gender">Gender :</label>
+            <input type="text" id="gender" name="gender" required>
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="password" required>
+           <button type="submit"><a href="Login">Register</a></button>
+        </form>
+    </div>
+</body>
+</html>

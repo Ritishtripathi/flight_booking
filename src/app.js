@@ -22,6 +22,15 @@ const User=mongoose.model('User',{
     to:String,
 
 })
+// craete model 
+const Signup=mongoose.model('Signup',{
+    name:String,
+    email:String,
+    dob:String,
+    number:String,
+    gender:String,
+    password:String
+})
 
 app.use(bodyParser.urlencoded({
     extended:true
@@ -33,6 +42,13 @@ app.use(bodyParser.urlencoded({
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/index.html');
 })
+app.get('/Signup',(req,res)=>{
+    res.sendFile(__dirname + '/Signup.html');
+})
+app.get('/Login',(req,res)=>{
+    res.sendFile(__dirname + '/Login.html');
+})
+
 
 // insert data 
 app.post('/submit',(req,res)=>{
@@ -43,7 +59,24 @@ app.post('/submit',(req,res)=>{
     })
 
     user.save().then(()=>{
-        res.send('User data is saved');
+        res.sendFile(__dirname + '/thanku.html');
+    })
+    .catch((err)=>{
+        console.error('Errror ',err);
+        res.status(500).send('Error ');
+    });
+});
+
+// sinup pae insert data
+app.post('/signup',(req,res)=>{
+    const { name,email,dob,number,gender,password} =req.body;
+
+    const signuser=new Signup({
+        name,email,dob,number,gender,password
+    })
+
+    signuser.save().then(()=>{
+        res.sendFile(__dirname + '/thanku.html');
     })
     .catch((err)=>{
         console.error('Errror ',err);
@@ -54,7 +87,7 @@ app.post('/submit',(req,res)=>{
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7000;
 app.listen(PORT,()=>{
     console.log(`Server is running port ${PORT}`);
 });
