@@ -84,10 +84,71 @@ app.post('/signup',(req,res)=>{
     });
 });
 
+// Login here 
+app.post('/AdminLogin',async (req,res)=>{
+    try{
+        const {email,password}=req.body;
+        const user =await Signup.findOne({email});
+console.log("user details",user);
+if(!user){
+    res.status(401).json({error:'invalid email'});
+}
+if(user.password!=password){
+    res.status(401).json({error:'invalid password'});
+}
+res.redirect('users');
 
 
+    }
+    catch{
+        res.status(500).json({error:'Login failed '})
+    }
+})
 
-const PORT = process.env.PORT || 7000;
+//show data
+app.get('/users', (req, res) => {
+    Signup.find()
+        .then(users =>  {
+          
+        const table = `
+          <table border="1">
+            ${users.map(user => `
+              <tr>
+              <th>Name</th>
+              <td>${user.name}</td>
+              </tr>
+              <tr>
+              <th>Email</th>
+              <td>${user.email}</td>
+              </tr>
+              <tr>
+              <th>Date of Birth</th>
+              <td>${user.dob}</td>
+              </tr>
+              <tr>
+              <th>Number</th>
+              <td>${user.number}</td>
+              </tr>
+              <tr>
+              <th>Gender</th>
+              <td>${user.gender}</td>
+              </tr>
+              </tr>`).join('')}
+          </table>
+        `;
+        res.send(table);
+      
+      })
+      .catch(err => {
+        console.error('Error fetching users: ', err);
+        res.status(500).send('Error fetching users');
+      });
+  });
+
+//show data of passenger
+
+//port code
+const PORT = process.env.PORT || 3003;
 app.listen(PORT,()=>{
     console.log(`Server is running port ${PORT}`);
 });
