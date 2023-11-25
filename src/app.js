@@ -20,7 +20,7 @@ const User=mongoose.model('User',{
     date:String,
     from:String,
     to:String,
-
+   sittype:String,
 })
 // craete model 
 const Signup=mongoose.model('Signup',{
@@ -52,10 +52,10 @@ app.get('/Login',(req,res)=>{
 
 // insert data 
 app.post('/submit',(req,res)=>{
-    const { name,age,email,date,from,to} =req.body;
+    const { name,age,email,date,from,to,sittype} =req.body;
 
     const user=new User({
-        name,age,email,date,from,to
+        name,age,email,date,from,to,sittype
     })
 
     user.save().then(()=>{
