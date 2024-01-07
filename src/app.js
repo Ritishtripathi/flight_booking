@@ -90,13 +90,12 @@ app.post('/AdminLogin',async (req,res)=>{
         const {email,password}=req.body;
         const user =await Signup.findOne({email});
 console.log("user details",user);
-if(!user){
-    res.status(401).json({error:'invalid email'});
+if(!user && user.password!=password){
+    res.status(401).json({error:'invalid email or password'});
 }
-if(user.password!=password){
-    res.status(401).json({error:'invalid password'});
+else{
+    alert('login successfull')
 }
-res.redirect('users');
 
 
     }
